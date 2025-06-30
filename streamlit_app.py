@@ -30,9 +30,13 @@ input_dict = {
     "year": year
 }
 
-input_df = pd.DataFrame([input_dict])
+feature_order = [
+    "gender", "loan_type", "approv_in_adv", "loan_purpose",
+    "credit_worthiness", "loan_amount", "lump_sum_payment", "year"
+]
+input_df = pd.DataFrame([input_dict])[feature_order]
 
-# Prediction
+# Predict
 if st.button("Predict Default Risk"):
     prediction = model.predict(input_df)[0]
     if prediction == 1:
